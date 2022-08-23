@@ -1,10 +1,32 @@
 import psycopg2
-from psycopg2 import OperationalError
+from psycopg2 import OperationalError, sql
+from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
+
+db_password = 'rEtyuol44'
+
+
+def create_database(name_Database, password):
+    connect = psycopg2.connect(dbname='postgres',
+                               user='postgres',
+                               host='localhost',
+                               password=password)
+
+    connect.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
+    cursor = connect.cursor()
+    try:
+        cursor.execute(sql.SQL("CREATE DATABASE {}").format(sql.Identifier(name_Database)))
+        print('successfully created database')
+    except:
+        print('Database already exists')
+    pass
+
+
+create_database('t_db', db_password)
 
 con = psycopg2.connect(
     database="t_db",
     user="postgres",
-    password="rEtyuol44",
+    password=db_password,
     host="localhost",
     port="5432"
 )
@@ -19,6 +41,7 @@ def execute_query(connection, query):
         print("Query executed successfully")
     except OperationalError as e:
         print(f"The error '{e}' occurred")
+
 
 create_mailingList_table = """
 CREATE TABLE IF NOT EXISTS mailing_list (
