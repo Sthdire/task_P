@@ -16,7 +16,7 @@ def add_mailing_list(message_):
 
 #надо пофиксить баг: почему-то в таблицу все записывается по 2 раза
 
-def add_client(phone_n, timezone):
+def add_client(phone_n, timezone=''):
     new_client = client(phone_n=phone_n, timezone=timezone)
     db.session.add(new_client)
     db.session.commit()
@@ -26,10 +26,19 @@ def add_message(message_):
     new_message = message(date_time_create=today, status='false', id_send=0, id_client=0, message=message_)
     db.session.add(new_message)
     db.session.commit()
-    msg = message.query.filter_by(message=message_).first()
+    msg = message.query.filter_by(message=message_)
     return message_, today, msg.id_message
 
-add_mailing_list("правда, живите по правде!")
+def change_client_attributes(phone_n, timezone):
+
+        ph = client.query.filter_by(phone_n=phone_n).first()
+        ph.timezone = timezone
+        db.session.commit()
+
+
+# add_client(98078792)
+# change_client_attributes(98078792, 'utd')
+client.query.filter(client.id_client == 1).delete()
 
 if __name__ == '__main__':
     app.run(debug=True)

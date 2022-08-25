@@ -21,7 +21,7 @@ class mailing_list(db.Model):
 
 class client(db.Model):
     id_client = db.Column(db.Integer, primary_key=True)
-    phone_n = db.Column(db.Integer, nullable=False)
+    phone_n = db.Column(db.Integer, nullable=False, unique=True)
     timezone = db.Column(db.Integer, nullable=False)
 
 class message(db.Model):
