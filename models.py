@@ -12,7 +12,7 @@ db.create_all()
 
 
 class mailing_list(db.Model):
-    id_send = db.Column(db.Integer, primary_key=True)
+    id_send = db.Column(db.Integer, primary_key=True, unique=True)
     message = db.Column(db.String, nullable=False)
     date_time_start = db.Column(db.DATE, nullable=False)
     phone_n = db.Column(db.Integer, nullable=False)
@@ -20,7 +20,7 @@ class mailing_list(db.Model):
     id_message = db.Column(db.Integer, nullable=False)
 
 class client(db.Model):
-    id_client = db.Column(db.Integer, primary_key=True)
+    id_client = db.Column(db.Integer, primary_key=True, unique=True)
     phone_n = db.Column(db.Integer, nullable=False, unique=True)
     timezone = db.Column(db.Integer, nullable=False)
 

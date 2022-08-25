@@ -30,15 +30,15 @@ def add_message(message_):
     return message_, today, msg.id_message
 
 def change_client_attributes(phone_n, timezone):
+    ph = client.query.filter_by(phone_n=phone_n).first()
+    ph.timezone = timezone
+    db.session.commit()
 
-        ph = client.query.filter_by(phone_n=phone_n).first()
-        ph.timezone = timezone
-        db.session.commit()
-
-
-# add_client(98078792)
+# add_client(98078792, "121212")
 # change_client_attributes(98078792, 'utd')
-client.query.filter(client.id_client == 1).delete()
+# obj = client.query.filter_by(phone_n=98078792).first()
+# db.session.delete(obj)
+# db.session.commit()
 
 if __name__ == '__main__':
     app.run(debug=True)
