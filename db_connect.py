@@ -49,7 +49,7 @@ CREATE TABLE IF NOT EXISTS mailing_list (
   ml_name text,
   message text,
   date_time_start DATE, 
-  phone_N INTEGER,
+  phone_N text,
   date_time_close DATE,
   id_message INTEGER
 )
@@ -57,7 +57,7 @@ CREATE TABLE IF NOT EXISTS mailing_list (
 create_client_table = """
 CREATE TABLE IF NOT EXISTS client (
   id_client SERIAL PRIMARY KEY,
-  phone_N INTEGER,
+  phone_N text,
   timezone text
 )
 """

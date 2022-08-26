@@ -8,9 +8,9 @@ app = Flask(__name__)
 app.register_blueprint(api_bp, url_prefix='/api')
 
 
-def add_mailing_list(ml_name):
+def add_mailing_list(ml_name, phone_n='', message=''):
     today = date.today()
-    new_Mlist = mailing_list(date_time_start=today, ml_name=ml_name)
+    new_Mlist = mailing_list(date_time_start=today, ml_name=ml_name, phone_n=phone_n, message=message)
     db.session.add(new_Mlist)
     db.session.commit()
 
@@ -35,24 +35,31 @@ def change_client_attributes(phone_n, timezone):
     ph.timezone = timezone
     db.session.commit()
 
+def change_ml_attributes(ml_name, phone_n, message):
+    ml = mailing_list.query.filter_by(ml_name=ml_name).first()
+    ml.message = message
+    ml.phone_n = phone_n
+    db.session.commit()
+
+
 def delete_client(phone_n):
-    obj = client.query.filter_by(phone_n=phone_n).first()
-    db.session.delete(obj)
+    c = client.query.filter_by(phone_n=phone_n).first()
+    db.session.delete(c)
     db.session.commit()
 
 def delete_message(message_):
-    obj = message.query.filter_by(message=message_).first()
-    db.session.delete(obj)
+    m = message.query.filter_by(message=message_).first()
+    db.session.delete(m)
     db.session.commit()
 
 def delete_mailing_list(ml_name):
-    obj = mailing_list.query.filter_by(ml_name=ml_name).first()
-    db.session.delete(obj)
+    ml = mailing_list.query.filter_by(ml_name=ml_name).first()
+    db.session.delete(ml)
     db.session.commit()
 
 def get_date(ml_name):
-    obj = mailing_list.query.filter_by(ml_name=ml_name).first()
-    return obj.message, obj.phone_n
+    ml = mailing_list.query.filter_by(ml_name=ml_name).first()
+    return ml.message, ml.phone_n
 
 
 
