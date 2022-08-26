@@ -1,11 +1,11 @@
 from flask_restful import Resource
 
-from models import mailing_list
 from probe_server_form import mail
+from table_methods import TM
 
-
+tm = TM()
 class Mass(Resource):
     def get(self, ml_name):
-        ml = mailing_list.query.filter_by(ml_name=ml_name).first()
-        resp = mail(text=ml.message, number=ml.phone_n)
+        ml = tm.get_date(ml_name)
+        resp = mail(text=ml[0], number=ml[1])
         return {'if 200 all is ok': resp}
