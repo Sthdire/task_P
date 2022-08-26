@@ -13,15 +13,16 @@ db.create_all()
 
 class mailing_list(db.Model):
     id_send = db.Column(db.Integer, primary_key=True, unique=True)
-    message = db.Column(db.String, nullable=False)
+    ml_name = db.Column(db.String, nullable=False)
+    message = db.Column(db.String)
     date_time_start = db.Column(db.DATE, nullable=False)
-    phone_n = db.Column(db.Integer, nullable=False)
-    date_time_close = db.Column(db.DATE, nullable=False)
-    id_message = db.Column(db.Integer, nullable=False)
+    phone_n = db.Column(db.Integer)
+    date_time_close = db.Column(db.DATE)
+    id_message = db.Column(db.Integer)
 
 class client(db.Model):
-    id_client = db.Column(db.Integer, primary_key=True, unique=True)
-    phone_n = db.Column(db.Integer, nullable=False, unique=True)
+    id_client = db.Column(db.Integer, unique=True, primary_key=True)
+    phone_n = db.Column(db.Integer, nullable=False)
     timezone = db.Column(db.Integer, nullable=False)
 
 class message(db.Model):

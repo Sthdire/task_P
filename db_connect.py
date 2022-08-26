@@ -46,6 +46,7 @@ def execute_query(connection, query):
 create_mailingList_table = """
 CREATE TABLE IF NOT EXISTS mailing_list (
   id_send SERIAL PRIMARY KEY,
+  ml_name text,
   message text,
   date_time_start DATE, 
   phone_N INTEGER,
