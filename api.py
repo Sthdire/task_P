@@ -7,8 +7,11 @@ from resources.detail_mailing_stats import Detail
 from resources.mass_mailing import Mass
 from resources.message import Message
 
+from init import app
+
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
+app.register_blueprint(api_bp, url_prefix='/api')
 
 api.add_resource(Client, '/add_client/phone=<phone_n>', '/add_client/phone=<phone_n>/timezone=<timezone>', '/update_client/phone=<phone_n>/timezone=<timezone>', '/delete_client/phone=<phone_n>')
 api.add_resource(Mailing, '/add_mailing/<ml_name>/<phone_n>/<message>', '/update_mailing/<ml_name>/phone=<phone_n>/message=<message>', '/update_mailing/<ml_name>/phone=<phone_n>/message=<message>', '/delete_mailing/<ml_name>')
