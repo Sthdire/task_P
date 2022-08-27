@@ -6,7 +6,7 @@ Base url: http://127.0.0.1:5000/api
 
   Methods:
   
-    Client:
+   Client:
       POST: '/add_client/phone=<yorePhone>'
         Returns:
                 {
