@@ -12,7 +12,7 @@ api = Api(api_bp)
 
 
 api.add_resource(Client, '/add_client/phone=<phone_n>', '/add_client/phone=<phone_n>/timezone=<timezone>', '/update_client/phone=<phone_n>/timezone=<timezone>', '/delete_client/phone=<phone_n>')
-api.add_resource(Mailing, '/add_mailing/<ml_name>/<phone_n>/<message>', '/update_mailing/<ml_name>/phone=<phone_n>/message=<message>', '/update_mailing/<ml_name>/phone=<phone_n>/message=<message>', '/delete_mailing/<ml_name>')
+api.add_resource(Mailing, '/add_mailing/mailing_name=<ml_name>/phone_number=<phone_n>/message=<message>', '/update_mailing/mailing_name=<ml_name>/phone=<phone_n>/message=<message>', '/update_mailing/mailing_name=<ml_name>/phone=<phone_n>/message=<message>', '/delete_mailing/mailing_name=<ml_name>')
 api.add_resource(Message, '/add_message/message=<message_>', '/delete_message/message=<message_>')
 api.add_resource(All, '/all_mailing_stats')
 api.add_resource(Detail, '/detail_mailing_stats')
