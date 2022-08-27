@@ -21,4 +21,4 @@ class Client(Resource):
 
     def delete(self, phone_n):
         tm.delete_client(phone_n)
-        return {"phone_n": phone_n}
+        return {"phone_n": phone_n, 'delete': 'Successfully'}
