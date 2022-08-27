@@ -66,8 +66,8 @@ CREATE TABLE IF NOT EXISTS message (
   id_message SERIAL PRIMARY KEY,
   date_time_create DATE, 
   status text,
-  id_send INTEGER,
-  id_client INTEGER,
+  ml_name text,
+  phone_n text,
   message text
 )
 """

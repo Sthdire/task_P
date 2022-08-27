@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from init import app
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:lololo2000@localhost/t_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:rEtyuol44@localhost/t_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 db = SQLAlchemy(app)
@@ -29,6 +29,6 @@ class message(db.Model):
     id_message = db.Column(db.Integer, primary_key=True)
     date_time_create = db.Column(db.DATE, nullable=False)
     status = db.Column(db.String, nullable=False)
-    id_send = db.Column(db.Integer, nullable=False)
-    id_client = db.Column(db.Integer, nullable=False)
+    ml_name = db.Column(db.String, nullable=False)
+    phone_n = db.Column(db.String, nullable=False)
     message = db.Column(db.String, nullable=False)

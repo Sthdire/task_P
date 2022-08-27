@@ -10,14 +10,14 @@ class TM:
         db.session.add(new_Mlist)
         db.session.commit()
 
-    def add_client(phone_n, timezone=''):
+    def add_client(self, phone_n, timezone=''):
         new_client = client(phone_n=phone_n, timezone=timezone)
         db.session.add(new_client)
         db.session.commit()
 
-    def add_message(self, message_):
+    def add_message(self, message_, ml_name, phone_n, status='false'):
         today = date.today()
-        new_message = message(date_time_create=today, status='false', id_send=0, id_client=0, message=message_)
+        new_message = message(date_time_create=today, status=status, ml_name=ml_name, phone_n=phone_n, message=message_)
         db.session.add(new_message)
         db.session.commit()
 
@@ -48,5 +48,18 @@ class TM:
         db.session.commit()
 
     def get_date(self, ml_name):
-        ml = mailing_list.query.filter_by(ml_name=ml_name).first()
-        return ml.message, ml.phone_n
+        arr_phone = []
+        arr_mess = []
+        for ml in mailing_list.query:
+            if ml.ml_name == ml_name:
+                if not ml.phone_n in arr_phone:
+                    arr_phone.append(ml.phone_n)
+                if not ml.message in arr_mess:
+                    arr_mess.append(ml.message)
+        return arr_phone, arr_mess
+
+
+tm = TM()
+# tm.get_date('sasa112')
+# for x in range(13):
+#     tm.add_mailing_list('sasa112', str(x+1), 'sdjjsdjsjdj')
