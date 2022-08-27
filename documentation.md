@@ -1,7 +1,9 @@
 Вivide and Сonquer API
-  API для создания и изменения рассылок
+
+API для создания и изменения рассылок
 
 Base url: http://127.0.0.1:5000/api
+
 Methods:
   Client:
     POST: '/add_client/phone=<yorePhone>'
