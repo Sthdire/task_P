@@ -9,6 +9,7 @@ class TM:
         new_Mlist = mailing_list(date_time_start=today, ml_name=ml_name, phone_n=phone_n, message=message)
         db.session.add(new_Mlist)
         db.session.commit()
+        return
 
     def add_client(self, phone_n, timezone=''):
         new_client = client(phone_n=phone_n, timezone=timezone)
@@ -26,9 +27,9 @@ class TM:
         ph.timezone = timezone
         db.session.commit()
 
-    def change_ml_attributes(self, ml_name, phone_n, message):
+    def change_ml_attributes(self, ml_name, phone_n, message_):
         ml = mailing_list.query.filter_by(ml_name=ml_name).first()
-        ml.message = message
+        ml.message = message_
         ml.phone_n = phone_n
         db.session.commit()
 
