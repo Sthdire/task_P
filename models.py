@@ -13,9 +13,9 @@ class mailing_list(db.Model):
     id_send = db.Column(db.Integer, primary_key=True, unique=True)
     ml_name = db.Column(db.String, nullable=False)
     message = db.Column(db.String)
-    date_time_start = db.Column(db.DATE, nullable=False)
+    date_time_start = db.Column(db.String, nullable=False)
     phone_n = db.Column(db.String)
-    date_time_close = db.Column(db.DATE)
+    date_time_close = db.Column(db.String)
     id_message = db.Column(db.Integer)
 
 
@@ -27,7 +27,7 @@ class client(db.Model):
 
 class message(db.Model):
     id_message = db.Column(db.Integer, primary_key=True)
-    date_time_create = db.Column(db.DATE, nullable=False)
+    date_time_create = db.Column(db.String, nullable=False)
     status = db.Column(db.String, nullable=False)
     ml_name = db.Column(db.String, nullable=False)
     phone_n = db.Column(db.String, nullable=False)
