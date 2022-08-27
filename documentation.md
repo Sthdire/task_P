@@ -5,6 +5,7 @@ API для создания и изменения рассылок
 Base url: http://127.0.0.1:5000/api
 
   Methods:
+  
     Client:
       POST: '/add_client/phone=<yorePhone>'
         Returns:
@@ -35,6 +36,7 @@ Base url: http://127.0.0.1:5000/api
                }
   
   Mailing:
+  
      POST: '/add_mailing/mailing_name=<yoreMailing>/phone_number=<yorePhone>/message=<yoreMessage>'
         Returns:
                {
@@ -58,6 +60,7 @@ Base url: http://127.0.0.1:5000/api
                 }
   
    Message:
+   
       POST: '/add_message/message=<yoreMessage>'
          Returns:
                {
@@ -72,18 +75,21 @@ Base url: http://127.0.0.1:5000/api
                   "deleted": "True", 
                 }
   
-    All mailing stats:
+   All mailing stats:
+   
       GET: '/all_mailing_stats'
          Returns:
                 {
                 }
 
    Detail mailing stats:
+   
       GET: '/detail_mailing_stats/mailing=<mailing_mame>'
          Returns:
                {
                }
    Mass mailing:
+   
        GET: '/mass_mailing/mail=<mailing_mame>'
          Returns:
             if correct request:
