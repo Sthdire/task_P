@@ -7,8 +7,6 @@ from resources.detail_mailing_stats import Detail
 from resources.mass_mailing import Mass
 from resources.message import Message
 
-from init import app
-
 api_bp = Blueprint('api', __name__)
 api = Api(api_bp)
 

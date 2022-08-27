@@ -1,6 +1,5 @@
 from flask_restful import Resource
 
-from models import client, db
 from table_methods import TM
 
 tm = TM()

@@ -1,8 +1,5 @@
-from datetime import date
-
 from flask_restful import Resource
 
-from models import mailing_list, db
 from table_methods import TM
 
 tm = TM()
