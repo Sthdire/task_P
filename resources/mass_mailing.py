@@ -14,5 +14,5 @@ class Mass(Resource):
                 tm.add_client(i)
             for x in arr_mess:
                 resp = mail(text=x, number=i)
-                tm.add_message(x, ml_name, i, 'sended')
+                # tm.add_message(x, ml_name, i, 'sended')
         return {'if 200 all is ok': resp}

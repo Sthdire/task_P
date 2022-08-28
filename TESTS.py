@@ -1,2 +1,3 @@
-import time
-from datetime import datetime
+from models import message
+
+print(message.query[-1].id_message)

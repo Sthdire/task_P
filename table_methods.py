@@ -4,12 +4,12 @@ from models import db, client, message, mailing_list
 
 
 class TM:
-    def add_mailing_list(self, ml_name, phone_n='', message=''):
+    def add_mailing_list(self, ml_name, phone_n, message):
         now = datetime.now()
         x = datetime.now()
         r = x.day + 2
         x = x.replace(day=r)
-        new_Mlist = mailing_list(date_time_start=now, ml_name=ml_name, phone_n=phone_n, message=message, date_time_close=str(x))
+        new_Mlist = mailing_list(date_time_start=now, ml_name=ml_name, phone_n=phone_n, message=message, date_time_close=str(x), id_message=tm.add_message(message, ml_name, phone_n,))
         db.session.add(new_Mlist)
         db.session.commit()
 
@@ -23,6 +23,7 @@ class TM:
         new_message = message(date_time_create=now, status=status, ml_name=ml_name, phone_n=phone_n, message=message_)
         db.session.add(new_message)
         db.session.commit()
+        return message.query[-1].id_message
 
     def change_ml_attributes(self, ml_name, phone_n, message_):
         ml = mailing_list.query.filter_by(ml_name=ml_name).first()
@@ -45,10 +46,11 @@ class TM:
         db.session.delete(c)
         db.session.commit()
 
-    def delete_message(self, message_):
-        m = message.query.filter_by(message=message_).first()
-        db.session.delete(m)
-        db.session.commit()
+    '''ненужный метод'''
+    # def delete_message(self, message_):
+    #     m = message.query.filter_by(message=message_).first()
+    #     db.session.delete(m)
+    #     db.session.commit()
 
     def get_date(self, ml_name):
         arr_mess = []
@@ -72,6 +74,26 @@ class TM:
                     arr_mess.append(ml.message)
         return len(arr_phone), len(arr_mess)
 
+    def get_detailed_statistick(self):
+        arr_ml = []
+        for ml in mailing_list.query:
+            if not ml.ml_name in arr_ml:
+                arr_ml.append(ml.ml_name)
+        stf = ''
+
+        for x in arr_ml:
+            f = 0
+            s = 0
+            for h in mailing_list.query:
+                if h.ml_name == x:
+                    m = message.query.filter_by(id_message=h.id_message).first()
+                    if m.status == 'false':
+                        f += 1
+                    else:
+                        s += 1
+            stf += 'list: ' + x  + '     no sended:  ' + str(f) + '     sended: ' + str(s) +'\n'
+        print(stf)
+        return stf
 
 
 
@@ -79,5 +101,6 @@ class TM:
 tm = TM()
 # tm.get_date('sasa112')
 # for x in range(13):
-#     tm.add_mailing_list('sasa112', str(x+1), 'sdjjsdjsjdj')
-print(tm.get_statistick('sasa112'))
+#     tm.add_mailing_list('1','2','3')
+# print(tm.get_statistick('sasa112'))
+# tm.get_detailed_statistick()

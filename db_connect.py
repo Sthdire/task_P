@@ -51,6 +51,7 @@ CREATE TABLE IF NOT EXISTS mailing_list (
   date_time_start text, 
   phone_N text,
   date_time_close text,
+  id_message INTEGER
 )
 """
 create_client_table = """
