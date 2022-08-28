@@ -8,7 +8,8 @@ db_password = 'rEtyuol44'
 def create_database(name_Database, password):
     connect = psycopg2.connect(dbname='postgres',
                                user='postgres',
-                               host='localhost',
+                               host='172.17.0.2',
+                               port="5432",
                                password=password)
 
     connect.set_isolation_level(ISOLATION_LEVEL_AUTOCOMMIT)
@@ -27,7 +28,7 @@ con = psycopg2.connect(
     database="t_db",
     user="postgres",
     password=db_password,
-    host="localhost",
+    host="172.17.0.2",
     port="5432"
 )
 cur = con.cursor()
@@ -51,6 +52,7 @@ CREATE TABLE IF NOT EXISTS mailing_list (
   date_time_start text, 
   phone_N text,
   date_time_close text,
+  id_message text
 )
 """
 create_client_table = """

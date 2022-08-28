@@ -1,0 +1,26 @@
+version: '3.8'
+
+services:
+ script:
+  build: ./script/
+  command: /script/src/script.py
+  container_name: script-mtg
+  depends_on:
+    - db
+  networks:
+    - net
+ db:
+  image: postgres:latest
+  container_name: dbpg-mtg
+  restart: always
+  volumes:
+    - ./ .database/postgres/data:/var/lib/postgresql/data
+  ports:
+    - "5432"
+  networks:
+    - net
+
+
+networks:
+ net:
+  driver: bridge
