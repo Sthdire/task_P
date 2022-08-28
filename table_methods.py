@@ -46,12 +46,6 @@ class TM:
         db.session.delete(c)
         db.session.commit()
 
-    '''ненужный метод'''
-    # def delete_message(self, message_):
-    #     m = message.query.filter_by(message=message_).first()
-    #     db.session.delete(m)
-    #     db.session.commit()
-
     def get_date(self, ml_name):
         arr_mess = []
         arr_phone = []
@@ -83,6 +77,6 @@ class TM:
                         f += 1
                     else:
                         s += 1
-            stf += 'list: ' + x  + '     no sended:  ' + str(f) + '     sended:  ' + str(s) +'\n'
+            stf += 'list: ' + x + '     no sended:  ' + str(f) + '     sended:  ' + str(s) +'\n'
         return stf
 tm = TM()
