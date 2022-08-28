@@ -66,8 +66,8 @@ class TM:
         arr_phone = []
         for ml in mailing_list.query:
             if ml.ml_name == ml_name:
-                if not ml.ml_phone in arr_phone:
-                    arr_phone.append(ml.ml_phone)
+                if not ml.phone_n in arr_phone:
+                    arr_phone.append(ml.phone_n)
                 if not ml.message in arr_mess:
                     arr_mess.append(ml.message)
         return len(arr_phone), len(arr_mess)
@@ -80,3 +80,4 @@ tm = TM()
 # tm.get_date('sasa112')
 # for x in range(13):
 #     tm.add_mailing_list('sasa112', str(x+1), 'sdjjsdjsjdj')
+print(tm.get_statistick('sasa112'))
