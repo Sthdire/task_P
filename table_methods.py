@@ -64,23 +64,15 @@ class TM:
         return arr_phone, arr_mess
 
     def get_statistick(self, ml_name):
-        arr_mess = []
-        arr_phone = []
-        for ml in mailing_list.query:
-            if ml.ml_name == ml_name:
-                if not ml.phone_n in arr_phone:
-                    arr_phone.append(ml.phone_n)
-                if not ml.message in arr_mess:
-                    arr_mess.append(ml.message)
+        arr_phone, arr_mess = tm.get_date(ml_name)
         return len(arr_phone), len(arr_mess)
 
     def get_detailed_statistick(self):
         arr_ml = []
+        stf = ''
         for ml in mailing_list.query:
             if not ml.ml_name in arr_ml:
                 arr_ml.append(ml.ml_name)
-        stf = ''
-
         for x in arr_ml:
             f = 0
             s = 0
@@ -91,16 +83,6 @@ class TM:
                         f += 1
                     else:
                         s += 1
-            stf += 'list: ' + x  + '     no sended:  ' + str(f) + '     sended: ' + str(s) +'\n'
-        print(stf)
+            stf += 'list: ' + x  + '     no sended:  ' + str(f) + '     sended:  ' + str(s) +'\n'
         return stf
-
-
-
-
 tm = TM()
-# tm.get_date('sasa112')
-# for x in range(13):
-#     tm.add_mailing_list('1','2','3')
-# print(tm.get_statistick('sasa112'))
-# tm.get_detailed_statistick()
