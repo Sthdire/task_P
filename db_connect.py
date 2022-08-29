@@ -2,7 +2,7 @@ import psycopg2
 from psycopg2 import OperationalError, sql
 from psycopg2.extensions import ISOLATION_LEVEL_AUTOCOMMIT
 
-db_password = 'rEtyuol44'
+db_password = 'your_password'
 
 
 def create_database(name_Database, password):
@@ -49,6 +49,7 @@ CREATE TABLE IF NOT EXISTS mailing_list (
   ml_name text,
   message text,
   date_time_start text, 
+  status text,
   phone_N text,
   date_time_close text,
   id_message INTEGER

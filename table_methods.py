@@ -4,12 +4,12 @@ from models import db, client, message, mailing_list
 
 
 class TM:
-    def add_mailing_list(self, ml_name, phone_n, message):
+    def add_mailing_list(self, ml_name, phone_n, message, status='true'):
         now = datetime.now()
         x = datetime.now()
         r = x.day + 2
         x = x.replace(day=r)
-        new_Mlist = mailing_list(date_time_start=now, ml_name=ml_name, phone_n=phone_n, message=message, date_time_close=str(x), id_message=tm.add_message(message, ml_name, phone_n,))
+        new_Mlist = mailing_list(date_time_start=now, ml_name=ml_name, phone_n=phone_n, message=message, date_time_close=str(x), id_message=tm.add_message(message, ml_name, phone_n,), status=status)
         db.session.add(new_Mlist)
         db.session.commit()
 
@@ -49,8 +49,9 @@ class TM:
     def get_date(self, ml_name):
         arr_mess = []
         arr_phone = []
+        tm.scan_and_change()
         for ml in mailing_list.query:
-            if ml.ml_name == ml_name:
+            if ml.ml_name == ml_name and ml.status == 'true':
                 if not ml.phone_n in arr_phone:
                     arr_phone.append(ml.phone_n)
                 if not ml.message in arr_mess:
@@ -79,4 +80,10 @@ class TM:
                         s += 1
             stf += 'list: ' + x + '     no sended:  ' + str(f) + '     sended:  ' + str(s) +'\n'
         return stf
+
+    def scan_and_change(self):
+        for ml in mailing_list.query:
+            if ml.date_time_close < str(datetime.now()):
+                ml.status = 'false'
+                db.session.commit()
 tm = TM()

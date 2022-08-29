@@ -13,5 +13,6 @@ class Mass(Resource):
             if not client.query.filter_by(phone_n=i).first():
                 tm.add_client(i)
             for x in arr_mess:
+
                 resp = mail(text=x, number=i)
         return {'if 200 all is ok': resp}

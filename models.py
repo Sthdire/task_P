@@ -2,7 +2,7 @@ from flask_sqlalchemy import SQLAlchemy
 
 from init import app, db
 
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:rEtyuol44@localhost/t_db'
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://postgres:your_password@localhost/t_db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
 
@@ -14,6 +14,7 @@ class mailing_list(db.Model):
     ml_name = db.Column(db.String, nullable=False)
     message = db.Column(db.String)
     date_time_start = db.Column(db.String, nullable=False)
+    status = db.Column(db.String, nullable=False)
     phone_n = db.Column(db.String)
     date_time_close = db.Column(db.String)
     id_message = db.Column(db.Integer)
